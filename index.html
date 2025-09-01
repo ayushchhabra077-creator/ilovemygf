@@ -309,6 +309,18 @@
             margin-right: 8px;
         }
         
+        /* Game over button responsive layout */
+        @media (max-width: 480px) {
+            .game-over-screen > div {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+            
+            .game-over-screen .game-button {
+                min-width: 250px !important;
+            }
+        }
+        
         /* Mobile specific improvements */
         @media (max-width: 768px) {
             .game-header { padding: 10px; }
@@ -379,10 +391,20 @@
     
     <!-- Game Over Screen -->
     <div class="game-over-screen" id="gameOverScreen" style="display: none;">
-        <h1 class="screen-title" style="color: #4ecdc4;">You Did Amazing! 💖</h1>
-        <p class="screen-message" id="finalMessage"></p>
-        <button class="game-button" onclick="restartGame()">Catch More Kisses 💋</button>
-        <button class="game-button secondary" onclick="goBack()">Back to Main Site</button>
+        <h1 class="screen-title" style="color: #ff6b6b;">Oops baby ji </h1>
+        <p class="screen-message">
+            uffo bhondu silly ladki koi ni 💕<br>
+            You still caught some of my kisses, and that's what matters! 💋
+        </p>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+            <button class="game-button" onclick="restartGame()">
+                Dubara try krlo ji, it's okay 💪
+            </button>
+            <button class="game-button secondary" onclick="goBack()">
+                Go back to main site 🏠
+            </button>
+        </div>
     </div>
     
     <!-- Game Container -->
@@ -446,11 +468,41 @@
             { emoji: '⛈️', type: 'bomb', points: -1, probability: 0.05, sound: 'bomb' }
         ];
         
+        // KISS SOUND FIX
         function playSound(soundType) {
-            const sound = sounds[soundType];
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(e => console.log('Sound failed:', e));
+            if (soundType === 'kiss') {
+                // Special handling for kiss sound on mobile
+                const sound = sounds[soundType];
+                if (sound) {
+                    const clone = sound.cloneNode();
+                    clone.volume = sound.volume;
+                    clone.currentTime = 0;
+                    clone.play().catch(e => console.log('Kiss sound failed:', e));
+                    setTimeout(() => clone.remove(), 3000);
+                }
+            } else {
+                // Original code for other sounds
+                const sound = sounds[soundType];
+                if (sound) {
+                    sound.currentTime = 0;
+                    sound.play().catch(e => console.log('Sound failed:', e));
+                }
+            }
+        }
+        
+        // WARMUP KISS SOUND
+        function warmUpKissSound() {
+            const kissSound = sounds.kiss;
+            if (kissSound) {
+                const originalVolume = kissSound.volume;
+                kissSound.volume = 0;
+                kissSound.play().then(() => {
+                    kissSound.pause();
+                    kissSound.currentTime = 0;
+                    kissSound.volume = originalVolume;
+                }).catch(() => {
+                    kissSound.volume = originalVolume;
+                });
             }
         }
         
@@ -514,21 +566,22 @@
         });
         
         function requestFullscreen() {
-    const elem = document.documentElement; // Full page
-    
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(e => console.log('Fullscreen failed:', e));
-    } else if (elem.webkitRequestFullscreen) { // Safari
-        elem.webkitRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
-    }
-}
+            const elem = document.documentElement; // Full page
+            
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(e => console.log('Fullscreen failed:', e));
+            } else if (elem.webkitRequestFullscreen) { // Safari
+                elem.webkitRequestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        }
 
         function startGame() {
             requestFullscreen();
+            
             gameActive = true;
             score = 0; lives = 3; level = 1; gameSpeed = 3000;
             
@@ -540,6 +593,8 @@
                 console.log('Music failed, trying again...');
                 setTimeout(() => backgroundMusic.play(), 500);
             });
+            
+            warmUpKissSound(); // KISS SOUND WARMUP
             
             // Reset player position
             playerPosition = 50;
@@ -561,19 +616,9 @@
             backgroundMusic.pause();
             
             document.querySelectorAll('.falling-item').forEach(item => item.remove());
-            document.getElementById('finalScore').textContent = score;
             gameOverScreen.style.display = 'flex';
             
-            const finalMessage = document.getElementById('finalMessage');
-            if (score >= 300) {
-                finalMessage.innerHTML = `WOW! You caught <span style="color: #f39c12;">${score}</span> of my kisses! 💋<br>You're absolutely perfect, Drishti! 💖✨`;
-            } else if (score >= 200) {
-                finalMessage.innerHTML = `Amazing! You caught <span style="color: #4ecdc4;">${score}</span> kisses! 💕<br>You're incredible at catching my love! 😘`;
-            } else if (score >= 100) {
-                finalMessage.innerHTML = `Great job! You caught <span style="color: #ff6b6b;">${score}</span> kisses! ❤️<br>Each one was filled with love for you! 🌹`;
-            } else {
-                finalMessage.innerHTML = `You caught <span style="color: #ff6b6b;">${score}</span> of my kisses! 💋<br>Every one carries my love for you! 💖`;
-            }
+            // No need for finalMessage updates since we have fixed "Oops baby ji" content
         }
         
         function goBack() {
@@ -725,4 +770,3 @@
     </script>
 </body>
 </html>
-
