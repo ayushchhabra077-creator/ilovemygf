@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catch My Kisses for Drishti 💋</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
@@ -11,17 +11,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
         
         body {
@@ -31,9 +20,8 @@
                 url('./assets/images/background.jpg') center/cover fixed,
                 linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
             color: white;
-            position: relative;
+            overflow: hidden;
             height: 100vh;
-            width: 100vw;
         }
         
         .game-container {
@@ -41,64 +29,68 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
         
         .game-header {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background: rgba(0,0,0,0.7);
             backdrop-filter: blur(10px);
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             z-index: 100;
             border-bottom: 2px solid rgba(255,255,255,0.2);
-            -webkit-backface-visibility: hidden;
         }
         
         .game-title {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             color: #ff6b6b;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .game-stats {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 350px;
+            max-width: 400px;
             margin: 0 auto;
         }
         
         .stat {
-            font-size: clamp(0.8rem, 2.2vw, 1rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             font-weight: 600;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
         }
         
-        .score { color: #4ecdc4; }
-        .lives { color: #ff6b6b; }
-        .level { color: #f9ca24; }
+        .score {
+            color: #4ecdc4;
+        }
         
-        /* Boyfriend image at top - FIXED for mobile */
+        .lives {
+            color: #ff6b6b;
+        }
+        
+        .level {
+            color: #f9ca24;
+        }
+        
+        /* Boyfriend image at top sending kisses */
         .boyfriend-sender {
-            position: absolute;
-            top: 90px;
+            position: fixed;
+            top: 120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             z-index: 90;
             border-radius: 50%;
-            border: 3px solid #ff6b6b;
-            box-shadow: 0 10px 25px rgba(255,107,107,0.4);
+            border: 4px solid #ff6b6b;
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
             animation: gentle-float 3s ease-in-out infinite;
-            -webkit-backface-visibility: hidden;
         }
         
         .boyfriend-sender img {
@@ -106,57 +98,50 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            display: block;
         }
         
         @keyframes gentle-float {
             0%, 100% { transform: translateX(-50%) translateY(0px); }
-            50% { transform: translateX(-50%) translateY(-8px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
         
-        /* Love message */
+        /* Love message from boyfriend */
         .love-message {
-            position: absolute;
-            top: 180px;
+            position: fixed;
+            top: 240px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255,107,107,0.9);
             backdrop-filter: blur(10px);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
             z-index: 89;
             animation: message-pulse 4s ease-in-out infinite;
-            -webkit-backface-visibility: hidden;
         }
         
         @keyframes message-pulse {
             0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
         }
         
-        /* Drishti as the player - MOBILE OPTIMIZED */
+        /* Drishti as the player */
         .player {
             position: absolute;
-            bottom: 30px;
+            bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             cursor: pointer;
+            transition: all 0.1s ease;
             z-index: 50;
             border-radius: 50%;
-            border: 3px solid #4ecdc4;
-            box-shadow: 0 10px 25px rgba(78,205,196,0.4);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            touch-action: manipulation;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            transition: transform 0.1s ease-out;
+            border: 4px solid #4ecdc4;
+            box-shadow: 0 15px 35px rgba(78,205,196,0.4);
         }
         
         .player img {
@@ -164,20 +149,18 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            display: block;
-            pointer-events: none;
         }
         
-        .player.moving {
-            box-shadow: 0 15px 35px rgba(78,205,196,0.6);
-            transform: translateX(-50%) scale(1.05);
+        .player:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 20px 40px rgba(78,205,196,0.6);
         }
         
-        /* Catching effect */
+        /* Catching effect around Drishti */
         .catch-effect {
             position: absolute;
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             border: 3px solid #4ecdc4;
             border-radius: 50%;
             top: 50%;
@@ -185,60 +168,89 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             animation: catch-ring 0.5s ease-out;
-            pointer-events: none;
         }
         
         @keyframes catch-ring {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
         }
         
         .falling-item {
             position: absolute;
-            font-size: 32px;
+            font-size: 35px;
             animation: fall linear;
             cursor: pointer;
+            transition: all 0.1s ease;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            z-index: 40;
-            touch-action: manipulation;
+        }
+        
+        .falling-item:hover {
+            transform: scale(1.2);
         }
         
         @keyframes fall {
-            from { top: -50px; }
-            to { top: 100vh; }
+            from {
+                top: -50px;
+            }
+            to {
+                top: 100vh;
+            }
         }
         
-        .kiss { color: #ff6b6b; }
-        .heart { color: #e74c3c; }
+        .kiss {
+            color: #ff6b6b;
+        }
+        
+        .heart {
+            color: #e74c3c;
+        }
+        
         .special-kiss {
             color: #f39c12;
-            font-size: 40px;
+            font-size: 45px;
             animation: fall linear, special-glow 2s ease-in-out infinite;
         }
         
         @keyframes special-glow {
             0%, 100% { filter: brightness(1) drop-shadow(0 0 5px #f39c12); }
-            50% { filter: brightness(1.3) drop-shadow(0 0 12px #f39c12); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 15px #f39c12); }
         }
         
-        .bomb { color: #2c3e50; }
+        .bomb {
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+        }
         
         .particle {
             position: absolute;
             pointer-events: none;
             animation: particle-explosion 0.8s ease-out forwards;
-            font-size: 18px;
-            z-index: 60;
+            font-size: 20px;
         }
         
         @keyframes particle-explosion {
-            0% { opacity: 1; transform: scale(1) translate(0, 0); }
-            100% { opacity: 0; transform: scale(0.3) translate(var(--dx), var(--dy)); }
+            0% {
+                opacity: 1;
+                transform: scale(1) translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3) translate(var(--dx), var(--dy));
+            }
         }
         
         .game-over-screen, .start-screen {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(0,0,0,0.9);
             backdrop-filter: blur(15px);
             display: flex;
@@ -247,41 +259,39 @@
             align-items: center;
             text-align: center;
             z-index: 200;
-            padding: 20px;
         }
         
         .screen-title {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            margin-bottom: 15px;
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 20px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
         }
         
         .screen-message {
-            font-size: clamp(0.9rem, 2.8vw, 1.2rem);
-            margin-bottom: 25px;
-            max-width: 450px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 30px;
+            max-width: 500px;
             line-height: 1.6;
         }
         
         .game-button {
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             border: none;
-            padding: 12px 25px;
-            border-radius: 40px;
+            padding: 15px 30px;
+            border-radius: 50px;
             color: white;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-size: clamp(1rem, 3vw, 1.2rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 8px;
-            touch-action: manipulation;
-            min-width: 180px;
+            margin: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
-        .game-button:hover, .game-button:active {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255,107,107,0.5);
+        .game-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,107,0.5);
         }
         
         .game-button.secondary {
@@ -292,24 +302,55 @@
             background: rgba(0,0,0,0.6);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 25px;
-            max-width: 350px;
+            padding: 20px;
+            margin-bottom: 30px;
+            max-width: 400px;
         }
         
         .instruction-item {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+            margin-bottom: 10px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
         
         .instruction-icon {
-            font-size: 22px;
-            margin-right: 8px;
+            font-size: 25px;
+            margin-right: 10px;
         }
         
-        /* Game over button responsive layout */
+        @media (max-width: 768px) {
+            .game-header {
+                padding: 15px;
+            }
+            
+            .boyfriend-sender {
+                width: 80px;
+                height: 80px;
+                top: 100px;
+            }
+            
+            .love-message {
+                top: 190px;
+                font-size: 1rem;
+            }
+            
+            .player {
+                width: 70px;
+                height: 70px;
+                bottom: 30px;
+            }
+            
+            .falling-item {
+                font-size: 30px;
+            }
+            
+            .special-kiss {
+                font-size: 38px;
+            }
+            
+        }
+            /* Game over buttons responsive layout */
         @media (max-width: 480px) {
             .game-over-screen > div {
                 flex-direction: column !important;
@@ -320,26 +361,11 @@
                 min-width: 250px !important;
             }
         }
-        
-        /* Mobile specific improvements */
-        @media (max-width: 768px) {
-            .game-header { padding: 10px; }
-            .boyfriend-sender { width: 70px; height: 70px; top: 80px; }
-            .love-message { top: 160px; font-size: 0.9rem; }
-            .player { width: 70px; height: 70px; bottom: 25px; }
-            .falling-item { font-size: 28px; }
-            .special-kiss { font-size: 35px; }
-        }
-        
-        @media (max-width: 480px) {
-            .boyfriend-sender { width: 60px; height: 60px; }
-            .player { width: 60px; height: 60px; }
-        }
-    </style>
+</style>
 </head>
 <body>
     <!-- Background Music -->
-    <audio id="backgroundMusic" loop preload="auto">
+    <audio id="backgroundMusic" loop>
         <source src="./assets/audio/game-background.mp3" type="audio/mpeg">
     </audio>
     
@@ -389,11 +415,11 @@
         <button class="game-button secondary" onclick="goBack()">Back to Main Site</button>
     </div>
     
-    <!-- Game Over Screen -->
+  <!-- Game Over Screen -->
     <div class="game-over-screen" id="gameOverScreen" style="display: none;">
         <h1 class="screen-title" style="color: #ff6b6b;">Oops baby ji 😅</h1>
         <p class="screen-message">
-            uffo mera boondi ka laddu koi ni 💕<br>
+            uffo mera boondi ka laddu its okayy 💕<br>
             You still caught some of my kisses, and that's what matters! 💋
         </p>
         
@@ -418,324 +444,390 @@
             </div>
         </div>
         
+        <!-- Boyfriend sending kisses from top -->
         <div class="boyfriend-sender">
             <img src="./assets/images/boyfriend.png" alt="Sending kisses">
         </div>
         
+        <!-- Love message -->
         <div class="love-message">
             Sending all my kisses to you! 😘
         </div>
         
+        <!-- Drishti as the player -->
         <div class="player" id="player">
             <img src="./assets/images/drishti.png" alt="Drishti">
         </div>
     </div>
-
+    
     <script>
-        let gameActive = false;
-        let score = 0;
-        let lives = 3;
-        let level = 1;
-        let gameSpeed = 3000;
-        let spawnInterval;
-        let playerPosition = 50;
-        let isMoving = false;
-        
-        const player = document.getElementById('player');
-        const gameContainer = document.getElementById('gameContainer');
-        const startScreen = document.getElementById('startScreen');
-        const gameOverScreen = document.getElementById('gameOverScreen');
-        
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const sounds = {
-            kiss: document.getElementById('kissSound'),
-            heart: document.getElementById('heartSound'),
-            special: document.getElementById('specialSound'),
-            bomb: document.getElementById('bombSound')
-        };
-        
-        // Set volumes
-        backgroundMusic.volume = 0.2;
-        Object.values(sounds).forEach(sound => {
-            sound.volume = 0.7;
-        });
-        
-        const gameItems = [
-            { emoji: '💋', type: 'kiss', points: 10, probability: 0.4, sound: 'kiss' },
-            { emoji: '❤️', type: 'heart', points: 5, probability: 0.3, sound: 'heart' },
-            { emoji: '💕', type: 'heart', points: 5, probability: 0.15, sound: 'heart' },
-            { emoji: '✨', type: 'special', points: 25, probability: 0.1, sound: 'special' },
-            { emoji: '⛈️', type: 'bomb', points: -1, probability: 0.05, sound: 'bomb' }
-        ];
-        
-        // ORIGINAL SIMPLE SOUND FUNCTION (NO KISS FIX)
-        function playSound(soundType) {
-            const sound = sounds[soundType];
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(e => console.log('Sound failed:', e));
-            }
-        }
-        
-        function updatePlayerPosition(clientX) {
-            const containerRect = gameContainer.getBoundingClientRect();
-            const newPosition = ((clientX - containerRect.left) / containerRect.width) * 100;
-            playerPosition = Math.max(8, Math.min(92, newPosition));
-            player.style.left = playerPosition + '%';
-            
-            // Add moving class for visual feedback
-            if (!isMoving) {
-                isMoving = true;
-                player.classList.add('moving');
-                setTimeout(() => {
-                    isMoving = false;
-                    player.classList.remove('moving');
-                }, 150);
-            }
-        }
-        
-        // Enhanced mobile touch controls
-        let touchStartX = 0;
-        let isDragging = false;
-        
-        // Touch events for mobile
-        gameContainer.addEventListener('touchstart', (e) => {
-            if (!gameActive) return;
-            e.preventDefault();
-            isDragging = true;
-            touchStartX = e.touches[0].clientX;
-            updatePlayerPosition(e.touches[0].clientX);
-        }, { passive: false });
-        
-        gameContainer.addEventListener('touchmove', (e) => {
-            if (!gameActive || !isDragging) return;
-            e.preventDefault();
-            updatePlayerPosition(e.touches[0].clientX);
-        }, { passive: false });
-        
-        gameContainer.addEventListener('touchend', (e) => {
-            isDragging = false;
-        });
-        
-        // Mouse events for desktop
-        gameContainer.addEventListener('mousemove', (e) => {
-            if (gameActive && !isDragging) {
-                updatePlayerPosition(e.clientX);
-            }
-        });
-        
-        // Keyboard controls
-        document.addEventListener('keydown', (e) => {
-            if (!gameActive) return;
-            if (e.key === 'ArrowLeft' || e.key === 'a') {
-                playerPosition = Math.max(8, playerPosition - 8);
-                player.style.left = playerPosition + '%';
-            } else if (e.key === 'ArrowRight' || e.key === 'd') {
-                playerPosition = Math.min(92, playerPosition + 8);
-                player.style.left = playerPosition + '%';
-            }
-        });
-        
-        function requestFullscreen() {
-            const elem = document.documentElement; // Full page
-            
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen().catch(e => console.log('Fullscreen failed:', e));
-            } else if (elem.webkitRequestFullscreen) { // Safari
-                elem.webkitRequestFullscreen();
-            } else if (elem.mozRequestFullScreen) { // Firefox
-                elem.mozRequestFullScreen();
-            } else if (elem.msRequestFullscreen) { // IE/Edge
-                elem.msRequestFullscreen();
-            }
-        }
+let gameActive = false;
+let score = 0;
+let lives = 3;
+let level = 1;
+let gameSpeed = 3000;
+let spawnInterval;
+let playerPosition = 50; // percentage
+let audioInitialized = false;
 
-        function startGame() {
-            requestFullscreen();
+const player = document.getElementById('player');
+const gameContainer = document.getElementById('gameContainer');
+const startScreen = document.getElementById('startScreen');
+const gameOverScreen = document.getElementById('gameOverScreen');
+
+// Audio elements
+const backgroundMusic = document.getElementById('backgroundMusic');
+const sounds = {
+    kiss: document.getElementById('kissSound'),
+    heart: document.getElementById('heartSound'),
+    special: document.getElementById('specialSound'),
+    bomb: document.getElementById('bombSound')
+};
+
+// Set background music volume to 20% (soft)
+backgroundMusic.volume = 0.2;
+
+// Set sound effects volume
+Object.values(sounds).forEach(sound => {
+    sound.volume = 0.7;
+});
+
+// Game items with their properties and sounds
+const gameItems = [
+    { emoji: '💋', type: 'kiss', points: 10, probability: 0.4, sound: 'kiss' },
+    { emoji: '❤️', type: 'heart', points: 5, probability: 0.3, sound: 'heart' },
+    { emoji: '💕', type: 'heart', points: 5, probability: 0.15, sound: 'heart' },
+    { emoji: '✨', type: 'special', points: 25, probability: 0.1, sound: 'special' },
+    { emoji: '⛈️', type: 'bomb', points: -1, probability: 0.05, sound: 'bomb' }
+];
+
+// Simplified audio initialization and play
+function initializeAndPlayAudio() {
+    if (audioInitialized) return;
+    
+    // Mark as initialized
+    audioInitialized = true;
+    
+    // Start background music immediately
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play().then(() => {
+        console.log('Background music started successfully!');
+    }).catch(e => {
+        console.log('Background music failed to start:', e);
+        // Try again after a short delay
+        setTimeout(() => {
+            backgroundMusic.play().catch(err => console.log('Retry failed:', err));
+        }, 100);
+    });
+    
+    // Initialize sound effects by attempting to play them silently
+    Object.values(sounds).forEach(sound => {
+        const originalVolume = sound.volume;
+        sound.volume = 0; // Silent
+        sound.play().then(() => {
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = originalVolume; // Restore volume
+        }).catch(e => {
+            sound.volume = originalVolume; // Restore volume even if failed
+        });
+    });
+}
+
+function playSound(soundType) {
+    if (!audioInitialized) return;
+    
+    const sound = sounds[soundType];
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Sound play failed:', e));
+    }
+}
+
+// Mouse and touch controls
+document.addEventListener('mousemove', (e) => {
+    if (gameActive) {
+        const containerRect = gameContainer.getBoundingClientRect();
+        const newPosition = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+        playerPosition = Math.max(5, Math.min(95, newPosition));
+        player.style.left = playerPosition + '%';
+    }
+});
+
+document.addEventListener('touchmove', (e) => {
+    if (gameActive && e.touches.length > 0) {
+        e.preventDefault();
+        const containerRect = gameContainer.getBoundingClientRect();
+        const newPosition = ((e.touches[0].clientX - containerRect.left) / containerRect.width) * 100;
+        playerPosition = Math.max(5, Math.min(95, newPosition));
+        player.style.left = playerPosition + '%';
+    }
+});
+
+// Keyboard controls
+document.addEventListener('keydown', (e) => {
+    if (!gameActive) return;
+    
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        playerPosition = Math.max(5, playerPosition - 5);
+        player.style.left = playerPosition + '%';
+    } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        playerPosition = Math.min(95, playerPosition + 5);
+        player.style.left = playerPosition + '%';
+    }
+});
+
+function requestFullscreen() {
+    const elem = document.documentElement; // Full page
+    
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(e => console.log('Fullscreen failed:', e));
+    } else if (elem.webkitRequestFullscreen) { // Safari
+        elem.webkitRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+        elem.mozRequestFullScreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+        elem.msRequestFullscreen();
+    }
+}
+function startGame() {
+     requestFullscreen(); // ADD THIS LINE
+    // Initialize audio and start background music
+    initializeAndPlayAudio();
+    
+    gameActive = true;
+    score = 0;
+    lives = 3;
+    level = 1;
+    gameSpeed = 3000;
+    
+    startScreen.style.display = 'none';
+    gameOverScreen.style.display = 'none';
+    
+    updateDisplay();
+    spawnItems();
+}
+
+function restartGame() {
+    // Clear all falling items
+    const fallingItems = document.querySelectorAll('.falling-item');
+    fallingItems.forEach(item => item.remove());
+    
+    clearInterval(spawnInterval);
+    
+    // Restart background music
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play().catch(e => console.log('Music restart failed:', e));
+    
+    startGame();
+}
+
+function endGame() {
+    gameActive = false;
+    clearInterval(spawnInterval);
+    backgroundMusic.pause();
+    
+    document.querySelectorAll('.falling-item').forEach(item => item.remove());
+    gameOverScreen.style.display = 'flex';
+    
+    // No need for finalMessage updates anymore since we have fixed content
+}
+
+    
+    // Clear remaining items
+    const fallingItems = document.querySelectorAll('.falling-item');
+    fallingItems.forEach(item => item.remove());
+    
+    document.getElementById('finalScore').textContent = score;
+    gameOverScreen.style.display = 'flex';
+    
+    // Custom romantic messages based on score
+    const finalMessage = document.getElementById('finalMessage');
+    if (score >= 300) {
+        finalMessage.innerHTML = `WOW! You caught <span id="finalScore">${score}</span> of my kisses! 💋<br>You're absolutely perfect at catching my love, Drishti! My heart is so full! 💖✨`;
+    } else if (score >= 200) {
+        finalMessage.innerHTML = `Amazing! You caught <span id="finalScore">${score}</span> kisses! 💕<br>You caught my love so beautifully! I'm so proud of you, gorgeous! 😘💕`;
+    } else if (score >= 100) {
+        finalMessage.innerHTML = `Great job, beautiful! You caught <span id="finalScore">${score}</span> kisses! ❤️<br>Every single one was filled with my love just for you! 🌹`;
+    } else {
+        finalMessage.innerHTML = `You caught <span id="finalScore">${score}</span> of my kisses! 💋<br>Each one carries all my love for you, my darling Drishti! 💖`;
+    }
+}
+
+function goBack() {
+    backgroundMusic.pause();
+    backgroundMusic.volume = 0.2; // Reset volume
+    window.location.href = 'index.html';
+}
+
+function updateDisplay() {
+    document.getElementById('score').textContent = score;
+    document.getElementById('lives').textContent = lives;
+    document.getElementById('level').textContent = level;
+}
+
+function createCatchEffect() {
+    const effect = document.createElement('div');
+    effect.className = 'catch-effect';
+    player.appendChild(effect);
+    
+    setTimeout(() => {
+        effect.remove();
+    }, 500);
+}
+
+function createParticleExplosion(x, y, color, emoji) {
+    for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.textContent = emoji === '⛈️' ? '💥' : '✨';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.color = color;
+        particle.style.setProperty('--dx', (Math.random() - 0.5) * 200 + 'px');
+        particle.style.setProperty('--dy', (Math.random() - 0.5) * 200 + 'px');
+        
+        gameContainer.appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 800);
+    }
+}
+
+function selectRandomItem() {
+    const random = Math.random();
+    let cumulative = 0;
+    
+    for (const item of gameItems) {
+        cumulative += item.probability;
+        if (random <= cumulative) {
+            return item;
+        }
+    }
+    return gameItems[0]; // fallback
+}
+
+function spawnItems() {
+    if (!gameActive) return;
+    
+    spawnInterval = setInterval(() => {
+        if (!gameActive) return;
+        
+        const item = selectRandomItem();
+        const fallingItem = document.createElement('div');
+        
+        fallingItem.className = `falling-item ${item.type}`;
+        fallingItem.textContent = item.emoji;
+        fallingItem.style.left = Math.random() * 90 + 5 + '%';
+        fallingItem.style.animationDuration = (gameSpeed / 1000) + 's';
+        
+        // Add click handler for catching items
+        fallingItem.addEventListener('click', (e) => {
+            catchItem(fallingItem, item, e.clientX, e.clientY);
+        });
+        
+        gameContainer.appendChild(fallingItem);
+        
+        // Remove item after animation completes
+        setTimeout(() => {
+            if (fallingItem.parentNode) {
+                fallingItem.remove();
+            }
+        }, gameSpeed + 100);
+        
+        // Check for collisions with player
+        const checkCollision = setInterval(() => {
+            if (!fallingItem.parentNode || !gameActive) {
+                clearInterval(checkCollision);
+                return;
+            }
             
-            gameActive = true;
-            score = 0; lives = 3; level = 1; gameSpeed = 3000;
+            const itemRect = fallingItem.getBoundingClientRect();
+            const playerRect = player.getBoundingClientRect();
             
-            startScreen.style.display = 'none';
-            gameOverScreen.style.display = 'none';
-            
-            // Start background music
-            backgroundMusic.play().catch(e => {
-                console.log('Music failed, trying again...');
-                setTimeout(() => backgroundMusic.play(), 500);
-            });
-            
-            // Reset player position
-            playerPosition = 50;
-            player.style.left = '50%';
-            
+            if (itemRect.bottom >= playerRect.top &&
+                itemRect.left < playerRect.right &&
+                itemRect.right > playerRect.left &&
+                itemRect.top < playerRect.bottom) {
+                
+                catchItem(fallingItem, item, itemRect.left, itemRect.top);
+                clearInterval(checkCollision);
+            }
+        }, 50);
+        
+    }, Math.max(500, gameSpeed - (level * 200)));
+    
+    // Level progression
+    setTimeout(() => {
+        if (gameActive) {
+            level++;
+            gameSpeed = Math.max(1500, gameSpeed - 300);
             updateDisplay();
+            clearInterval(spawnInterval);
             spawnItems();
         }
+    }, 15000);
+}
+
+function catchItem(element, item, x, y) {
+    if (!gameActive || !element.parentNode) return;
+    
+    element.remove();
+    
+    // Play appropriate sound
+    playSound(item.sound);
+    
+    if (item.type === 'bomb') {
+        lives--;
+        createParticleExplosion(x, y, '#e74c3c', '⛈️');
         
-        function restartGame() {
-            document.querySelectorAll('.falling-item').forEach(item => item.remove());
-            clearInterval(spawnInterval);
-            startGame();
+        if (lives <= 0) {
+            endGame();
+            return;
         }
+    } else {
+        score += item.points;
+        createCatchEffect();
         
-        function endGame() {
-            gameActive = false;
-            clearInterval(spawnInterval);
-            backgroundMusic.pause();
-            
-            document.querySelectorAll('.falling-item').forEach(item => item.remove());
-            gameOverScreen.style.display = 'flex';
-            
-            // No need for finalMessage updates since we have fixed "Oops baby ji" content
-        }
-        
-        function goBack() {
-            backgroundMusic.pause();
-            window.location.href = 'index.html';
-        }
-        
-        function updateDisplay() {
-            document.getElementById('score').textContent = score;
-            document.getElementById('lives').textContent = lives;
-            document.getElementById('level').textContent = level;
-        }
-        
-        function createCatchEffect() {
-            const effect = document.createElement('div');
-            effect.className = 'catch-effect';
-            player.appendChild(effect);
-            setTimeout(() => effect.remove(), 500);
-        }
-        
-        function createParticleExplosion(x, y, color, emoji) {
-            for (let i = 0; i < 6; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.textContent = emoji === '⛈️' ? '💥' : '✨';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.color = color;
-                particle.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
-                particle.style.setProperty('--dy', (Math.random() - 0.5) * 150 + 'px');
-                gameContainer.appendChild(particle);
-                setTimeout(() => particle.remove(), 800);
-            }
-        }
-        
-        function selectRandomItem() {
-            const random = Math.random();
-            let cumulative = 0;
-            for (const item of gameItems) {
-                cumulative += item.probability;
-                if (random <= cumulative) return item;
-            }
-            return gameItems[0];
-        }
-        
-        function spawnItems() {
-            if (!gameActive) return;
-            
-            spawnInterval = setInterval(() => {
-                if (!gameActive) return;
-                
-                const item = selectRandomItem();
-                const fallingItem = document.createElement('div');
-                fallingItem.className = `falling-item ${item.type}`;
-                fallingItem.textContent = item.emoji;
-                fallingItem.style.left = Math.random() * 85 + 7.5 + '%';
-                fallingItem.style.animationDuration = (gameSpeed / 1000) + 's';
-                
-                fallingItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    catchItem(fallingItem, item, e.clientX, e.clientY);
-                });
-                
-                fallingItem.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    const touch = e.touches[0];
-                    catchItem(fallingItem, item, touch.clientX, touch.clientY);
-                });
-                
-                gameContainer.appendChild(fallingItem);
-                
-                setTimeout(() => {
-                    if (fallingItem.parentNode) fallingItem.remove();
-                }, gameSpeed + 100);
-                
-                const checkCollision = setInterval(() => {
-                    if (!fallingItem.parentNode || !gameActive) {
-                        clearInterval(checkCollision);
-                        return;
-                    }
-                    
-                    const itemRect = fallingItem.getBoundingClientRect();
-                    const playerRect = player.getBoundingClientRect();
-                    
-                    if (itemRect.bottom >= playerRect.top &&
-                        itemRect.left < playerRect.right &&
-                        itemRect.right > playerRect.left &&
-                        itemRect.top < playerRect.bottom) {
-                        catchItem(fallingItem, item, itemRect.left + itemRect.width/2, itemRect.top + itemRect.height/2);
-                        clearInterval(checkCollision);
-                    }
-                }, 50);
-                
-            }, Math.max(400, gameSpeed - (level * 200)));
-            
-            setTimeout(() => {
-                if (gameActive) {
-                    level++;
-                    gameSpeed = Math.max(1200, gameSpeed - 300);
-                    updateDisplay();
-                    clearInterval(spawnInterval);
-                    spawnItems();
-                }
-            }, 15000);
-        }
-        
-        function catchItem(element, item, x, y) {
-            if (!gameActive || !element.parentNode) return;
-            
-            element.remove();
-            playSound(item.sound);
-            
-            if (item.type === 'bomb') {
-                lives--;
-                createParticleExplosion(x, y, '#e74c3c', '⛈️');
-                if (lives <= 0) {
-                    endGame();
-                    return;
-                }
-            } else {
-                score += item.points;
-                createCatchEffect();
-                const colors = {
-                    'kiss': '#ff6b6b',
-                    'heart': '#e74c3c', 
-                    'special': '#f39c12'
-                };
-                createParticleExplosion(x, y, colors[item.type] || '#4ecdc4', item.emoji);
-            }
-            updateDisplay();
-        }
-        
-        // Prevent default touch behaviors
-        document.addEventListener('touchstart', (e) => {
-            if (e.target.closest('.game-container')) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        document.addEventListener('touchmove', (e) => {
-            if (e.target.closest('.game-container')) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        window.addEventListener('load', () => {
-            startScreen.style.display = 'flex';
-        });
-    </script>
-</body>
+        const colors = {
+            'kiss': '#ff6b6b',
+            'heart': '#e74c3c',
+            'special': '#f39c12'
+        };
+        createParticleExplosion(x, y, colors[item.type] || '#4ecdc4', item.emoji);
+    }
+    
+    updateDisplay();
+}
+
+// Initialize game
+window.addEventListener('load', () => {
+    startScreen.style.display = 'flex';
+});
+
+// Handle page visibility change
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden && gameActive) {
+        backgroundMusic.pause();
+    } else if (!document.hidden && gameActive && audioInitialized) {
+        backgroundMusic.play().catch(e => console.log('Music resume failed:', e));
+    }
+});
+
+// Add additional user interaction listeners for audio initialization
+document.addEventListener('click', () => {
+    if (!audioInitialized) {
+        initializeAndPlayAudio();
+    }
+});
+
+document.addEventListener('touchstart', () => {
+    if (!audioInitialized) {
+        initializeAndPlayAudio();
+    }
+});
+</script>
+
+    </body>
 </html>
