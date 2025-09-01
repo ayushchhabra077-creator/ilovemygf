@@ -391,9 +391,9 @@
     
     <!-- Game Over Screen -->
     <div class="game-over-screen" id="gameOverScreen" style="display: none;">
-        <h1 class="screen-title" style="color: #ff6b6b;">Oops baby ji </h1>
+        <h1 class="screen-title" style="color: #ff6b6b;">Oops baby ji 😅</h1>
         <p class="screen-message">
-            uffo bhondu silly ladki koi ni 💕<br>
+            uffo mera boondi ka laddu koi ni 💕<br>
             You still caught some of my kisses, and that's what matters! 💋
         </p>
         
@@ -468,41 +468,12 @@
             { emoji: '⛈️', type: 'bomb', points: -1, probability: 0.05, sound: 'bomb' }
         ];
         
-        // KISS SOUND FIX
+        // ORIGINAL SIMPLE SOUND FUNCTION (NO KISS FIX)
         function playSound(soundType) {
-            if (soundType === 'kiss') {
-                // Special handling for kiss sound on mobile
-                const sound = sounds[soundType];
-                if (sound) {
-                    const clone = sound.cloneNode();
-                    clone.volume = sound.volume;
-                    clone.currentTime = 0;
-                    clone.play().catch(e => console.log('Kiss sound failed:', e));
-                    setTimeout(() => clone.remove(), 3000);
-                }
-            } else {
-                // Original code for other sounds
-                const sound = sounds[soundType];
-                if (sound) {
-                    sound.currentTime = 0;
-                    sound.play().catch(e => console.log('Sound failed:', e));
-                }
-            }
-        }
-        
-        // WARMUP KISS SOUND
-        function warmUpKissSound() {
-            const kissSound = sounds.kiss;
-            if (kissSound) {
-                const originalVolume = kissSound.volume;
-                kissSound.volume = 0;
-                kissSound.play().then(() => {
-                    kissSound.pause();
-                    kissSound.currentTime = 0;
-                    kissSound.volume = originalVolume;
-                }).catch(() => {
-                    kissSound.volume = originalVolume;
-                });
+            const sound = sounds[soundType];
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log('Sound failed:', e));
             }
         }
         
@@ -593,8 +564,6 @@
                 console.log('Music failed, trying again...');
                 setTimeout(() => backgroundMusic.play(), 500);
             });
-            
-            warmUpKissSound(); // KISS SOUND WARMUP
             
             // Reset player position
             playerPosition = 50;
