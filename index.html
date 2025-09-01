@@ -577,21 +577,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-function requestFullscreen() {
-    const elem = document.documentElement; // Full page
-    
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(e => console.log('Fullscreen failed:', e));
-    } else if (elem.webkitRequestFullscreen) { // Safari
-        elem.webkitRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
-    }
-}
 function startGame() {
-     requestFullscreen(); // ADD THIS LINE
     // Initialize audio and start background music
     initializeAndPlayAudio();
     
