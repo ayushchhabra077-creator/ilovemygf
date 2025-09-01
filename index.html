@@ -613,31 +613,11 @@ function endGame() {
     clearInterval(spawnInterval);
     backgroundMusic.pause();
     
-    document.querySelectorAll('.falling-item').forEach(item => item.remove());
-    gameOverScreen.style.display = 'flex';
-    
-    // No need for finalMessage updates anymore since we have fixed content
-}
-
-    
     // Clear remaining items
     const fallingItems = document.querySelectorAll('.falling-item');
     fallingItems.forEach(item => item.remove());
     
-    document.getElementById('finalScore').textContent = score;
     gameOverScreen.style.display = 'flex';
-    
-    // Custom romantic messages based on score
-    const finalMessage = document.getElementById('finalMessage');
-    if (score >= 300) {
-        finalMessage.innerHTML = `WOW! You caught <span id="finalScore">${score}</span> of my kisses! 💋<br>You're absolutely perfect at catching my love, Drishti! My heart is so full! 💖✨`;
-    } else if (score >= 200) {
-        finalMessage.innerHTML = `Amazing! You caught <span id="finalScore">${score}</span> kisses! 💕<br>You caught my love so beautifully! I'm so proud of you, gorgeous! 😘💕`;
-    } else if (score >= 100) {
-        finalMessage.innerHTML = `Great job, beautiful! You caught <span id="finalScore">${score}</span> kisses! ❤️<br>Every single one was filled with my love just for you! 🌹`;
-    } else {
-        finalMessage.innerHTML = `You caught <span id="finalScore">${score}</span> of my kisses! 💋<br>Each one carries all my love for you, my darling Drishti! 💖`;
-    }
 }
 
 function goBack() {
@@ -817,3 +797,4 @@ document.addEventListener('touchstart', () => {
 
     </body>
 </html>
+
